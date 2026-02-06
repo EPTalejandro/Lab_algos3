@@ -51,4 +51,18 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
         }
         return false
     }
+
+    // el parametro de entrada se llama vers debido a que el nombre vertices ya esta ocupado
+    override fun subgrafo(vers: List<T>): ListaAdyacenciaGrafo<T>{
+        for(vertice in vers){
+            if(!(vertice in vers)) return false
+        }
+        val subgrafo: ListaAdyacenciaGrafo<T> = ListaAdyacenciaGrafo<T>()
+        subgrafo.vertices = this.vertices
+        val verticesEliminar: List<T> = this.vertices.filter {!(it in vers)}
+        for (vertice in verticesEliminar){
+            subgrafo.eliminarVertice(vertice)
+        }
+        return vertice
+    }
 }
