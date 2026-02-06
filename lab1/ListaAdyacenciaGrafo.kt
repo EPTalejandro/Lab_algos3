@@ -1,36 +1,36 @@
 class ListaAdyacenciaGrafo<T>(): Grafo<T>{
 
-    private val vertices = mutableMapOf(T, MutableList<T>)
+    private val verticesLados = mutableMapOf<T, MutableList<T>>()
 
-    override fun tamano():Int = vertices.size
+    override fun tamano():Int = verticesLados.size
 
-    override fun contiene(v:T):Boolean = v in vertices
+    override fun contiene(v:T):Boolean = v in verticesLados
 
     override fun agregarVertice(v:T): Boolean {
-        if(v in vertices) return false
-        vertices.add(v,mutableListOf<T>())
+        if(v in verticesLados) return false
+        verticesLados.put(v,mutableListOf<T>())
         return true
     }
 
     override fun conectar(desde:T,hasta:T): Boolean {
-        if (desde in vertices && hasta in vertices){
-            vertices[desde].add(hasta)
+        if (desde in verticesLados && hasta in verticesLados){
+            verticesLados[desde]!!.add(hasta)
             return true
         }
         return false
     }
 
-    override fun obtenerArcosSalida(v:T): MutableList<T>{
-        if( v in vertices){
-            return vertices[v]
+    override fun obtenerArcosSalida(v:T): List<T>{
+        if(v in verticesLados){
+            return verticesLados[v]!!.toList()
         }
-        return mutableListOf<T>()
+        return listOf<T>()
     }
 
     override fun eliminarVertice(v:T): Boolean {
-        if(v in vertices){
-            vertices.remove(v)
-            for (lista in vertices.values){
+        if(v in verticesLados){
+            verticesLados.remove(v)
+            for (lista in verticesLados.values){
                 if ( v in lista) {
                     lista.remove(v)
                 }
@@ -40,27 +40,30 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
         return false
     }
 
-    override fun obtenerArcosEntrada(v:T){
-        if(v in vertices){
+    override fun obtenerArcosEntrada(v:T): List<T>{
+        if(v in verticesLados){
             var arcosEntrada: MutableList<T> = mutableListOf<T>()
-            for (vertice, arcos in vertices){
+            for ((vertice, arcos) in verticesLados){
                 if (v in arcos){
                     arcosEntrada.add(vertice)
                 }
             }
+            return arcosEntrada
         }
-        return false
+        return listOf<T>()
     }
 
-    // el parametro de entrada se llama vers debido a que el nombre vertices ya esta ocupado
-    override fun subgrafo(vers: List<T>): ListaAdyacenciaGrafo<T>{
-        for(v in vers){
-            if(!(v in vers)) return false
+    // el parametro de entrada se llama vertices debido a que el nombre verticesLados ya esta ocupado
+    override fun subgrafo(vertices: Collection<T>): ListaAdyacenciaGrafo<T>{
+        for(v in vertices){
+            if(!(v in vertices)) return ListaAdyacenciaGrafo<T>()
         }
         var subgrafo: ListaAdyacenciaGrafo<T> = ListaAdyacenciaGrafo<T>()
-        subgrafo.vertices = this.vertices
-        val verticesEliminar: List<T> = this.vertices.filter {!(it in vers)}
-        for (vertice in verticesEliminar){
+        for((v,k) in this.verticesLados){
+            subgrafo.verticesLados.put(v,k)
+        }
+        val verticesLadosEliminar: List<T> = this.verticesLados.keys.filter {!(it in vertices)}
+        for (vertice in verticesLadosEliminar){
             subgrafo.eliminarVertice(vertice)
         }
         return subgrafo
