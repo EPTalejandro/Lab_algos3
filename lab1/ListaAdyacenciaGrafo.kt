@@ -7,13 +7,13 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
     override fun contiene(v:T):Boolean = v in verticesLados
 
     override fun agregarVertice(v:T): Boolean {
-        if(v in verticesLados) return false
+        if(contiene(v)) return false
         verticesLados.put(v,mutableListOf<T>())
         return true
     }
 
     override fun conectar(desde:T,hasta:T): Boolean {
-        if (desde in verticesLados && hasta in verticesLados){
+        if (contiene(desde) && contiene(hasta)){
             verticesLados[desde]!!.add(hasta)
             return true
         }
@@ -21,17 +21,17 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
     }
 
     override fun obtenerArcosSalida(v:T): List<T>{
-        if(v in verticesLados){
+        if(contiene(v)){
             return verticesLados[v]!!.toList()
         }
         return listOf<T>()
     }
 
     override fun eliminarVertice(v:T): Boolean {
-        if(v in verticesLados){
+        if(contiene(v)){
             verticesLados.remove(v)
             for (lista in verticesLados.values){
-                if ( v in lista) {
+                if (v in lista) {
                     lista.remove(v)
                 }
             }
@@ -41,7 +41,7 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
     }
 
     override fun obtenerArcosEntrada(v:T): List<T>{
-        if(v in verticesLados){
+        if(contiene(v)){
             var arcosEntrada: MutableList<T> = mutableListOf<T>()
             for ((vertice, arcos) in verticesLados){
                 if (v in arcos){
@@ -56,7 +56,7 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
     // el parametro de entrada se llama vertices debido a que el nombre verticesLados ya esta ocupado
     override fun subgrafo(vertices: Collection<T>): ListaAdyacenciaGrafo<T>{
         for(v in vertices){
-            if(!(v in vertices)) return ListaAdyacenciaGrafo<T>()
+            if(!(contiene(v))) return ListaAdyacenciaGrafo<T>()
         }
         var subgrafo: ListaAdyacenciaGrafo<T> = ListaAdyacenciaGrafo<T>()
         for((v,k) in this.verticesLados){
