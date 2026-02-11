@@ -2,9 +2,9 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
 
     private val verticesLados = mutableMapOf<T, MutableList<T>>()
 
-    override fun tamano():Int = verticesLados.size
+    override fun tamano():Int = this.verticesLados.size
 
-    override fun contiene(v:T):Boolean = v in verticesLados
+    override fun contiene(v:T):Boolean = v in this.verticesLados
 
     override fun agregarVertice(v:T): Boolean {
         if(contiene(v)) return false
@@ -48,12 +48,11 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
                     arcosEntrada.add(vertice)
                 }
             }
-            return arcosEntrada
+            return arcosEntrada.toList()
         }
         return listOf<T>()
     }
-
-    // el parametro de entrada se llama vertices debido a que el nombre verticesLados ya esta ocupado
+    
     override fun subgrafo(vertices: Collection<T>): ListaAdyacenciaGrafo<T>{
         for(v in vertices){
             if(!(contiene(v))) return ListaAdyacenciaGrafo<T>()
