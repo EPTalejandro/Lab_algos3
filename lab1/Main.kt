@@ -1,6 +1,6 @@
 fun main(){
     
-    val grafo = ListaAdyacenciaGrafo<Int>()
+    val grafo: Grafo<Int> = ListaAdyacenciaGrafo()
 
     grafo.agregarVertice(1)
     grafo.agregarVertice(2)
@@ -18,8 +18,10 @@ fun main(){
     grafo.conectar(2,2)
     grafo.conectar(2,3)
     grafo.conectar(3,4)
+    grafo.conectar(5,3)
 
     println(grafo.obtenerArcosEntrada(4))
+    println(grafo.obtenerArcosSalida(4))
     println(grafo.obtenerArcosSalida(2))
     println(grafo.obtenerArcosSalida(1))
 
@@ -36,6 +38,9 @@ fun main(){
 
     val grafo2 = grafo.subgrafo(listOf(5,1))
     println()
+    println(grafo2.obtenerArcosSalida(5))
+    println(grafo2.obtenerArcosSalida(1))
+
+    println(grafo.tamano())
     println(grafo.obtenerArcosSalida(5))
-    println(grafo.obtenerArcosSalida(1))
 }

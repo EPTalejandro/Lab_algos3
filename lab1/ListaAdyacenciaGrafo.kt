@@ -59,7 +59,7 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
         }
         var subgrafo: ListaAdyacenciaGrafo<T> = ListaAdyacenciaGrafo<T>()
         for((v,k) in this.verticesLados){
-            subgrafo.verticesLados.put(v,k)
+            subgrafo.verticesLados.put(v,k.toMutableList())
         }
         val verticesLadosEliminar: List<T> = this.verticesLados.keys.filter {!(it in vertices)}
         for (vertice in verticesLadosEliminar){

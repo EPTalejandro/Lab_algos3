@@ -1,11 +1,9 @@
 
 # Proyecto 1
 
-## Alejandro Villamizar 2210439
+### Alejandro Villamizar 2210439
 
-## Carlos Bisogno 2210041
-
-Parrafo
+### Carlos Bisogno 2210041
 
 |        Operación        |    Complejidad     |          Justificación                                                                                                                                  |
 |:-----------------------:|:------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -18,17 +16,14 @@ Parrafo
 | Tamaño                  |       O(1)         | Por el uso de mutableMap, existe un contador interno de elementos, acceder al valor es O(1)                                                             |
 | Subgrafo                |       O(n)         |                                                                                                                                                         |
 
-### Implementacion 
+### Implementacion
 
 A continuacion se detalladaran las desciciones que fueron tomadas a la hora de implementar el codigo:
 
-Como se tatraba de un grafo como lista de adyacencia se crea un MutableMap en el cual su clave sera el vertice de tipo T(osea el dado a la hora de crear el Grafo) y su valor sera una MutableList en la cual se guardaran los vertices adyacentes a este 
+Como se tatraba de un grafo como lista de adyacencia se crea un MutableMap en el cual su clave sera el vertice de tipo T(osea el dado a la hora de crear el Grafo) y su valor sera una MutableList en la cual se guardaran los vertices adyacentes a este.
 
-Funciones: 
+Funciones:
 
-* Subgrafo: primero se comprueba si todos los vertices dados pertenecen al grafo original, en caso contrario no existe un subgrafo con esos vertices. Una vez comprobado que todos los vertices dados pertenecen e duplica el grafo original para no modificarlo, y al duplicado se le aplicara la funcion de eliminar vertice a todos los vertices que no fueron dados por el usurio, asi al final se tendria el subgrafo requerido
+* Subgrafo: primero se comprueba si todos los vertices dados pertenecen al grafo original, en caso contrario no existe un subgrafo con esos vertices. Una vez comprobado que todos los vertices dados pertenecen e duplica el grafo original para no modificarlo, y al duplicado se le aplicara la funcion de eliminar vertice a todos los vertices que no fueron dados por el usurio, asi al final se tendria el subgrafo requerido.
 
-* eliminarVertice: se elimina de vertices lados la entrada del vertice dado lo cual elimina todos los lados de este, y luego solo queda eliminar el vertice dado en los lados de los demas vertices 
-
-
-
+* eliminarVertice: se elimina de vertices lados la entrada del vertice dado lo cual elimina todos los lados de este, y luego solo queda eliminar el vertice dado en los lados de los demas vertices.
