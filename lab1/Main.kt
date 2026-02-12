@@ -35,7 +35,9 @@ fun main(){
     grafo.conectar(2,4)
 
     val grafo2 = grafo.subgrafo(listOf(5,1))
-    println()
     println(grafo.obtenerArcosSalida(5))
     println(grafo.obtenerArcosSalida(1))
+    println()
+    println(grafo2.obtenerArcosSalida(5))
+    println(grafo2.obtenerArcosSalida(1))
 }
