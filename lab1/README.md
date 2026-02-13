@@ -16,7 +16,7 @@ Para ejecutar el programa se debe usar el comando make para la compilación de l
 | Obtener arcos entrada   |       O($$n^2$$)   | Verificar si contiene el vértice O(1), se recorren los n elementos, para todos se verifica su lista asociada, a lo sumo n elementos, esto es O($$n^2$$)                                                                        |
 | Eliminar vertice        |       O($$n^2$$)   | Debe recorrer los "n" vértices y para cada uno verificar si en la lista, de a lo sumo n elementos, se encuentra el vértice eliminado                                                                                           |
 | Tamaño                  |       O(1)         | Por el uso de mutableMap, existe un contador interno de elementos, acceder al valor es O(1)                                                                                                                                    |
-| Subgrafo                |       O($$n^2$$)   | Verificar si el grafo contiene los n vértices indicados O(n), para cada vértice en la lista dada, a lo sumo n, se revisa si cada elemento de la mutableList, igual a lo sumo n, está en la lista dada, el tiempo es O($$n^2$$) |
+| Subgrafo                |       O($$n^3$$)   | Verificar si el grafo contiene los n vértices indicados O(n), para cada vértice en la lista dada, a lo sumo n, se revisa si cada elemento de la mutableList, igual a lo sumo n, está en la lista dada, el tiempo es O($$n^3$$) |
 
 ### Implementacion
 
