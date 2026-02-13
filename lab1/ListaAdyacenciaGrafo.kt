@@ -55,15 +55,14 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
     
     override fun subgrafo(vertices: Collection<T>): ListaAdyacenciaGrafo<T>{
         for(v in vertices){
-            if(!(contiene(v))) return ListaAdyacenciaGrafo<T>()
+            if(!(contiene(v))) return ListaAdyacenciaGrafo()
         }
-        var subgrafo: ListaAdyacenciaGrafo<T> = ListaAdyacenciaGrafo<T>()
-        for((v,k) in this.verticesLados){
-            subgrafo.verticesLados.put(v,k.toMutableList())
-        }
-        val verticesLadosEliminar: List<T> = this.verticesLados.keys.filter {!(it in vertices)}
-        for (vertice in verticesLadosEliminar){
-            subgrafo.eliminarVertice(vertice)
+
+        val subgrafo = ListaAdyacenciaGrafo<T>()
+        for(v in vertices){
+            val originales = this.verticesLados[v]
+            val copiaFiltrada: MutableList<T> = originales!!.filter {it in vertices}.toMutableList()
+            subgrafo.verticesLados.put(v, copiaFiltrada)
         }
         return subgrafo
     }
