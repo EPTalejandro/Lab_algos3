@@ -13,44 +13,36 @@ class ListaAdyacenciaGrafo<T>(): Grafo<T>{
     }
 
     override fun conectar(desde:T,hasta:T): Boolean {
-        if (contiene(desde) && contiene(hasta)){
-            verticesLados[desde]!!.add(hasta)
-            return true
-        }
-        return false
+        if (!contiene(desde) || !contiene(hasta)) return false
+        verticesLados[desde]!!.add(hasta)
+        return true
     }
 
     override fun obtenerArcosSalida(v:T): List<T>{
-        if(contiene(v)){
-            return verticesLados[v]!!.toList()
-        }
-        return listOf<T>()
+        if(!contiene(v)) return listOf<T>()
+        return verticesLados[v]!!.toList()       
     }
 
     override fun eliminarVertice(v:T): Boolean {
-        if(contiene(v)){
-            verticesLados.remove(v)
-            for (lista in verticesLados.values){
-                if (v in lista) {
-                    lista.remove(v)
-                }
+        if(!contiene(v)) return false
+        verticesLados.remove(v)
+        for (lista in verticesLados.values){
+            if (v in lista) {
+                lista.remove(v)
             }
-            return true
         }
-        return false
+        return true   
     }
 
     override fun obtenerArcosEntrada(v:T): List<T>{
-        if(contiene(v)){
-            var arcosEntrada: MutableList<T> = mutableListOf<T>()
-            for ((vertice, arcos) in verticesLados){
-                if (v in arcos){
-                    arcosEntrada.add(vertice)
-                }
+        if(!contiene(v)) return listOf<T>()
+        var arcosEntrada: MutableList<T> = mutableListOf<T>()
+        for ((vertice, arcos) in verticesLados){
+            if (v in arcos){
+                arcosEntrada.add(vertice)
             }
-            return arcosEntrada.toList()
         }
-        return listOf<T>()
+        return arcosEntrada.toList()
     }
     
     override fun subgrafo(vertices: Collection<T>): ListaAdyacenciaGrafo<T>{

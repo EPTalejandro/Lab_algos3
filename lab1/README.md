@@ -26,6 +26,14 @@ Como se tatraba de un grafo como lista de adyacencia se crea un MutableMap en el
 
 Funciones:
 
-* Subgrafo: primero se comprueba si todos los vertices dados pertenecen al grafo original, en caso contrario no existe un subgrafo con esos vertices. Una vez comprobado que todos los vertices dados pertenecen e duplica el grafo original para no modificarlo, y al duplicado se le aplicara la funcion de eliminar vertice a todos los vertices que no fueron dados por el usurio, asi al final se tendria el subgrafo requerido.
+* tamaño: aprovecha el atributo .size de mutableMapOf para obtener cuantos vértices se encuentran en el grafo.
 
-* eliminarVertice: se elimina de vertices lados la entrada del vertice dado lo cual elimina todos los lados de este, y luego solo queda eliminar el vertice dado en los lados de los demas vertices.
+* contiene: verifica que el vértice dado pertenece al grafo, si es así devuelve true, en caso contrario devuelve false.
+
+* agregarVertice: dado un vértice verifica si ya está en el grafo, si está devuelve false, en caso contrario lo agrega al grafo y devuelve true.
+
+* conectar: dados dos vértices se verifica que ambos
+
+* subgrafo: la primera acción es comprobar si todos los vertices dados pertenecen al grafo original, en caso contrario no existe un subgrafo con esos vertices. Una vez comprobado lo anterior se crea un nuevo grafo para no modificar el original, para cada vértice dado se obtiene su lista de arcos, se filtra para conversar sólo los vértices que pertenecerán al subgrafo, luego se guarda el vértice junto con su lista de arcos en el nuevo grafo. El método retorna un grafo.
+
+* eliminarVertice: se elimina de vertices lados la entrada del vertice dado lo cual elimina todos los lados de este, y luego solo queda eliminar el vertice dado en los lados de los demas vertices. El
