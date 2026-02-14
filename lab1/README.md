@@ -30,10 +30,14 @@ Funciones:
 
 * contiene: verifica que el vértice dado pertenece al grafo, si es así devuelve true, en caso contrario devuelve false.
 
-* agregarVertice: dado un vértice verifica si ya está en el grafo, si está devuelve false, en caso contrario lo agrega al grafo y devuelve true.
+* agregarVertice: dado un vértice verifica si ya está en el grafo, de ser así devuelve false, en caso contrario lo agrega al grafo y devuelve true.
 
-* conectar: dados dos vértices se verifica que ambos
+* conectar: dados dos vértices se verifica que ambos pertenezcan al grafo, de no ser así devuelve false. Si ambos pertenecen se crear un arcos del primer al segundo vértice.
+
+* obtenerArcosSalida: dado un vértice verifica si pertenece al grafo, de no ser así devuelve una lista vacía, sino devuelve una lista con los arcos de salida del vértice.
+
+* obtenerArcosEntrada: dado un vértice verifica si pertenece al grafo, de no ser así devuelve una lista vacía. Si pertenece, entonces para cada vértice verifica si existe un arco hacia el vértice dado, y si lo hay agrega el vértice a una lista que se retornará al final de la función.
 
 * subgrafo: la primera acción es comprobar si todos los vertices dados pertenecen al grafo original, en caso contrario no existe un subgrafo con esos vertices. Una vez comprobado lo anterior se crea un nuevo grafo para no modificar el original, para cada vértice dado se obtiene su lista de arcos, se filtra para conversar sólo los vértices que pertenecerán al subgrafo, luego se guarda el vértice junto con su lista de arcos en el nuevo grafo. El método retorna un grafo.
 
-* eliminarVertice: se elimina de vertices lados la entrada del vertice dado lo cual elimina todos los lados de este, y luego solo queda eliminar el vertice dado en los lados de los demas vertices. El
+* eliminarVertice: dado un vértice se verifica si pertenece al grafo, de no ser así devuelve false. Si pertenece se elimina de verticesLados lo cual elimina todos sus arcos de salida, luego elimina el vértice dado en los arcos de los demás vértices.
