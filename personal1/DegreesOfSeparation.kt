@@ -13,29 +13,24 @@ fun gradosSeparacion(desde:String,hasta:String,grafo:ListaAdyacenciaGrafo<String
         return 0
     }
 
-    var total:Int = 1
+    var total:Int = 0
     val alcanzables: MutableSet<String> = mutableSetOf<String>()
     val vertices = ArrayDeque<String>()
     val revisados = mutableSetOf<String>()
 
-    grafo.obtenerArcosSalida(desde).forEach{elemento:String -> alcanzables.add(elemento); vertices.addLast(elemento)}
-
-    var ultimo = vertices.last()
-    var actual = vertices.first()
-    revisados.add(actual)
-
-    if (hasta in alcanzables) return 1
+    vertices.addLast(desde)
+    var ultimo: String = desde 
+    var actual:String = desde
 
     while (!(vertices.isEmpty())){
         grafo.obtenerArcosSalida(actual).forEach{elemento:String -> alcanzables.add(elemento); if(!(elemento in revisados)){vertices.addLast(elemento)}}
         revisados.add(actual)
+        if (hasta in alcanzables){
+            return total+1
+        }
         if(actual == ultimo){
             ultimo = vertices.last()
             total++
-        }
-        if (hasta in alcanzables){
-            if(actual!=ultimo) return total+1
-            else return total
         }
         vertices.removeFirst()
         actual = vertices.first()
