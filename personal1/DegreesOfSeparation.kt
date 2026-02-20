@@ -21,8 +21,9 @@ fun gradosSeparacion(desde:String,hasta:String,grafo:ListaAdyacenciaGrafo<String
     vertices.addLast(desde)
     var ultimo: String = desde 
     var actual:String = desde
+    var termino: Boolean = false
 
-    while (!(vertices.isEmpty())){
+    while (!(termino)){
         grafo.obtenerArcosSalida(actual).forEach{elemento:String -> alcanzables.add(elemento); if(!(elemento in revisados)){vertices.addLast(elemento)}}
         revisados.add(actual)
         if (hasta in alcanzables){
@@ -33,7 +34,12 @@ fun gradosSeparacion(desde:String,hasta:String,grafo:ListaAdyacenciaGrafo<String
             total++
         }
         vertices.removeFirst()
-        actual = vertices.first()
+        if(!(vertices.isEmpty())){
+            actual = vertices.first()
+        }
+        else{
+            termino = true
+        }
     }
     return -1
 }
